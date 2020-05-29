@@ -6,7 +6,7 @@
         type="primary"
         @click="showAdd=true;phoneNumber='';userName='';password='';selectValue=''"
       >添加人员</el-button>
-      <el-dialog title="教师信息" :visible.sync="showAdd" style="width:1000px;margin:0 auto;">
+      <el-dialog title="用户信息" :visible.sync="showAdd" style="width:1000px;margin:0 auto;">
         <div class="block">
           <span style="display:inline-block;width:150px;text-align:center;">姓名</span>
           <el-input
@@ -44,13 +44,6 @@
       <el-table-column prop="username" label="用户名" width="120" align="center"></el-table-column>
       <el-table-column prop="password" label="密码" width="140" align="center"></el-table-column>
       <el-table-column prop="type" label="身份" width="140" align="center"></el-table-column>
-      <!-- <el-table-column
-        prop="startWorkTime"
-        label="开始工作时间"
-        width="200"
-        align="center"
-        :formatter="startWorkTime"
-      ></el-table-column>-->
       <el-table-column
         prop="createTime"
         label="创建时间"
@@ -106,15 +99,6 @@
                 <el-option label="管理员" value="管理员"></el-option>
               </el-select>
             </div>
-            <!-- <div class="block">
-              <span style="display:inline-block;width:150px;text-align:center;">开始工作时间</span>
-              <el-date-picker
-                v-model="startworktime"
-                type="datetime"
-                placeholder="选择开始工作时间"
-                default-time="12:00:00"
-              ></el-date-picker>
-            </div>-->
             <div slot="footer" class="dialog-footer">
               <el-button @click="showEdit = false;">取 消</el-button>
               <el-button type="primary" @click="editInfo();showEdit = false;">确 定</el-button>
@@ -131,19 +115,7 @@ export default {
   name: "UserInfo",
   data() {
     return {
-      tableData: [
-        // {
-        // "id": 1,
-        // "phoneNumber": "string",
-        // "password": "string",
-        // "type": "string",
-        // "imgUrl": "string",
-        // "registTime": "2020-05-01T00:01:34.000+0000",
-        // "createTime": "2020-05-01T00:01:41.000+0000",
-        // "updateTime": "2020-05-01T00:01:41.000+0000",
-        // "name": "string"
-        // }
-      ],
+      tableData: [],
       formLabelWidth: "1000px",
       userId: 0,
       userName: "",
