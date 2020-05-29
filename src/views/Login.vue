@@ -3,7 +3,7 @@
     <el-form ref="adminForm" :model="adminForm" class="container" :rules="rules">
       <h3 style="font-size:20px;line-height:60px;font-weight:700;">资源管理系统登录</h3>
       <el-form-item prop="phoneNumber">
-        <el-input v-model="adminForm.phoneNumber" placeholder="请输入账号"></el-input>
+        <el-input v-model="adminForm.userName" placeholder="请输入账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input v-model="adminForm.password" type="password" placeholder="请输入密码"></el-input>
@@ -23,7 +23,7 @@ export default {
     return {
       isLoading: false,
       adminForm: {
-        phoneNumber: "",
+        userName: "",
         password: ""
       },
       rules: {
@@ -40,7 +40,35 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push("/admin");
+      // this.$router.push("/admin");
+      this.$axios({
+        method: "get",
+        url: this.baseUrl + "/user?username="+this.adminForm.userName+"&password="+this.adminForm.password
+      }).then(res=>{
+        // console.log(res);
+        // console.log(res.data.data);
+        if (res.data.status == 200) {
+            sessionStorage.type = res.data.data.type;
+            sessionStorage.userid = res.data.data.id;
+            sessionStorage.name = res.data.data.username;
+            sessionStorage.password = this.adminForm.password;
+            // location.reload();
+            this.$router.push("/admin");
+          } else {
+            this.$message({
+              showClose: true,
+              message: "登录账号或密码有误",
+              type: "error"
+            });
+          }
+      })
+      .catch(err => {
+          this.$message({
+            showClose: true,
+            message: "登录账号或密码有误",
+            type: "error"
+          });
+        });
     }
   }
 };

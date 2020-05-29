@@ -42,7 +42,7 @@
                 <span slot="title">信息管理</span>
               </template>
               <!--            index:路由跳转的地址-->
-              <el-menu-item index="/user">用户管理</el-menu-item>
+              <el-menu-item index="/user" v-show="type">用户管理</el-menu-item>
               <el-menu-item index="/changepwd">修改密码</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
@@ -79,7 +79,7 @@ export default {
     return {
       // 是否折叠
       isCollapse: false,
-      type: false
+      type: false,
     };
   },
   methods: {
@@ -90,7 +90,7 @@ export default {
   },
   created() {
     // console.log(sessionStorage.type)
-    if (sessionStorage.type == "管理") {
+    if (sessionStorage.type == "管理员") {
       this.type = true;
     } else {
       this.type = false;
