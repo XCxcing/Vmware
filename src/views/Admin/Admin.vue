@@ -8,7 +8,7 @@
           </el-col>
           <el-col class="info" :span="8">
             <i
-              :class="isCollapse?'el-icon-d-arrow-right':'el-icon-d-arrow-left'"
+              :class="isCollapse?'el-icon-caret-right':'el-icon-caret-left'"
               @click="isCollapse=!isCollapse"
             ></i>
           </el-col>
@@ -24,11 +24,14 @@
           </el-col>
         </el-row>
       </el-header>
-      <el-container>
+      <el-container style="min-height:500px">
         <el-aside :style="{width:isCollapse?'auto':'200px'}">
           <!--        router:布尔值，如果值为true说明我要开启路由模式
           default-active:将哪一个路由设置为选中项。-->
-          <el-menu
+
+
+
+          <!-- <el-menu
             :default-openeds="['1','2','3']"
             :collapse-transition="false"
             :router="true"
@@ -41,7 +44,6 @@
                 <i class="el-icon-user"></i>
                 <span slot="title">信息管理</span>
               </template>
-              <!--            index:路由跳转的地址-->
               <el-menu-item index="/user" v-show="type">用户管理</el-menu-item>
               <el-menu-item index="/changepwd">修改密码</el-menu-item>
             </el-submenu>
@@ -50,7 +52,6 @@
                 <i class="el-icon-menu"></i>
                 <span slot="title">主机管理</span>
               </template>
-              <!--            index:路由跳转的地址-->
               <el-menu-item index="/phyware">物理机</el-menu-item>
               <el-menu-item index="/vmware">虚拟机</el-menu-item>
             </el-submenu>
@@ -59,10 +60,49 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">数据详情</span>
               </template>
-              <!--            index:路由跳转的地址-->
+              <el-menu-item index="/resource">资源记录</el-menu-item>
+            </el-submenu>
+          </el-menu> -->
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            :router="true"
+            :default-openeds="['1','2','3']"
+            :collapse-transition="false"
+            :collapse="isCollapse"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+             style="min-height:500px">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-user"></i>
+                <span slot="title">信息管理</span>
+              </template>
+              <el-menu-item index="/user" v-show="type">用户管理</el-menu-item>
+              <el-menu-item index="/changepwd">修改密码</el-menu-item>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title">
+                <i class="el-icon-menu"></i>
+                <span slot="title">主机管理</span>
+              </template>
+              <el-menu-item index="/phyware">物理机详情</el-menu-item>
+              <el-menu-item index="/utilization">资源使用率</el-menu-item>
+              <el-menu-item index="/vmware">虚拟机</el-menu-item>
+            </el-submenu>
+            <el-submenu index="3">
+              <template slot="title">
+                <i class="el-icon-setting"></i>
+                <span slot="title">数据详情</span>
+              </template>
               <el-menu-item index="/resource">资源记录</el-menu-item>
             </el-submenu>
           </el-menu>
+
+
+
+
         </el-aside>
         <el-main>
           <router-view></router-view>
@@ -117,6 +157,9 @@ export default {
   .info {
     font-size: 30px;
     line-height: 60px;
+    text-align: left;
+    text-indent: 20px;
+    
   }
   .logo {
     text-align: center;

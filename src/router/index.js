@@ -41,6 +41,10 @@ const routes = [
       {
         path: '/resource',
         component: () => import('../views/Resource.vue')
+      },
+      {
+        path: '/utilization',
+        component: () => import('../views/Utilization.vue')
       }
     ]
   }

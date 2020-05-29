@@ -3,7 +3,7 @@
     <h3 style="font-size:20px;line-height:80px;font-weight:700;">查看人员信息</h3>
     <div class="top">
       <el-button
-        type="primary"
+        type="primary" round
         @click="showAdd=true;phoneNumber='';userName='';password='';selectValue=''"
       >添加人员</el-button>
       <el-dialog title="用户信息" :visible.sync="showAdd" style="width:1000px;margin:0 auto;">
@@ -38,7 +38,7 @@
         </div>
       </el-dialog>
     </div>
-    <el-table :data="tableData" stripe border style="width: 1221px;margin:0 auto;" align="center">
+    <el-table :data="tableData" stripe border style="width: 1042px;margin:0 auto;" align="center">
       <!-- <el-table :data="tableData" stripe border style="width: 50%;margin:0 auto;" align="center" @row-click="getDetails"> -->
       <el-table-column prop="id" label="人员id" width="120" align="center"></el-table-column>
       <el-table-column prop="username" label="用户名" width="120" align="center"></el-table-column>
@@ -324,4 +324,3 @@ export default {
   }
 }
 </style>
-idnumber
