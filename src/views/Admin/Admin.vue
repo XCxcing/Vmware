@@ -24,7 +24,7 @@
           </el-col>
         </el-row>
       </el-header>
-      <el-container style="min-height:500px">
+      <el-container :style="mins">
         <el-aside :style="{width:isCollapse?'auto':'200px'}">
           <!--        router:布尔值，如果值为true说明我要开启路由模式
           default-active:将哪一个路由设置为选中项。-->
@@ -73,7 +73,7 @@
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
-             style="min-height:500px">
+            :style="mins">
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-user"></i>
@@ -88,8 +88,8 @@
                 <span slot="title">主机管理</span>
               </template>
               <el-menu-item index="/phyware">物理机详情</el-menu-item>
-              <el-menu-item index="/utilization">资源使用率</el-menu-item>
               <el-menu-item index="/vmware">虚拟机</el-menu-item>
+              <el-menu-item index="/utilization">资源使用率</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
               <template slot="title">
@@ -120,6 +120,9 @@ export default {
       // 是否折叠
       isCollapse: false,
       type: false,
+      mins:{
+        minHeight:document.body.clientHeight - 60 + 'px'
+      }
     };
   },
   methods: {
@@ -130,6 +133,7 @@ export default {
   },
   created() {
     // console.log(sessionStorage.type)
+    // alert(document.body.clientHeight);
     if (sessionStorage.type == "管理员") {
       this.type = true;
     } else {

@@ -9,8 +9,7 @@
         <el-input v-model="adminForm.password" type="password" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :loading="isLoading" style="width: 60%" @click="login()" type="primary">登陆</el-button>
-        <el-button :loading="isLoading" style="width: 36%" @click="$router.push('/reg')" type="success">注册</el-button>
+        <el-button :loading="isLoading" style="width: 100%" @click="login()" v-on:keyup.enter="login()" type="primary">登陆</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -39,8 +38,10 @@ export default {
     };
   },
   methods: {
+    a(){console.log(1)},
     login() {
       // this.$router.push("/admin");
+      console.log(1);
       this.$axios({
         method: "get",
         url: this.baseUrl + "/user?username="+this.adminForm.userName+"&password="+this.adminForm.password
@@ -70,6 +71,16 @@ export default {
           });
         });
     }
+  },
+  created(){
+    let that = this;
+    document.onkeypress = function(e) {
+      var keycode = document.all ? event.keyCode : e.which;
+      if (keycode == 13) {
+        that.login();// 登录方法名
+         return false;
+      }
+    };
   }
 };
 </script>
